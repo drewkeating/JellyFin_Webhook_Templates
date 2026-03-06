@@ -1,0 +1,62 @@
+{
+    "content": "{{MentionType}}",
+    "avatar_url": "{{ServerUrl}}/Users/{{UserId}}/Images/Primary",
+    "username": "{{BotUsername}}",
+    "embeds": [
+        {
+            "author": {
+
+              {{#if_equals NotificationType 'PlaybackStart'}}
+                {{#if_equals ItemType 'Episode'}}
+                    "name": "{{{NotificationUsername}}} is watching:\n{{{SeriesName}}} S{{SeasonNumber00}}E{{EpisodeNumber00}} ~ {{{Name}}}",
+                {{else}}
+                    "name": "{{{NotificationUsername}}} is watching:\n{{{Name}}} ({{Year}})",
+                {{/if_equals}}
+              {{/if_equals}}
+
+              {{#if_equals NotificationType 'PlaybackStop'}}
+                {{#if_equals ItemType 'Episode'}}
+                    {{#if_equals PlayedToCompletion true}}
+                        "name": "{{{NotificationUsername}}} completed watching:\n{{{SeriesName}}} S{{SeasonNumber00}}E{{EpisodeNumber00}} ~ {{{Name}}}",
+                    {{else}}
+                        "name": "{{{NotificationUsername}}} stopped watching:\n{{{SeriesName}}} S{{SeasonNumber00}}E{{EpisodeNumber00}} ~ {{{Name}}}",
+                    {{/if_equals}}
+                {{else}}
+                    {{#if_equals PlayedToCompletion true}}
+                        "name": "{{{NotificationUsername}}} completed watching:\n{{{Name}}} ({{Year}})",
+                    {{else}}
+                        "name": "{{{NotificationUsername}}} stopped watching:\n{{{Name}}} ({{Year}})",
+                    {{/if_equals}}
+                {{/if_equals}}
+              {{/if_equals}}
+
+                "url": "{{ServerUrl}}/web/index.html#!/details?id={{ItemId}}&serverId={{ServerId}}"
+            },
+            
+            "thumbnail":{
+                "url": "{{ServerUrl}}/Items/{{ItemId}}/Images/Primary"
+            },
+
+            "description": "> {{{Overview}}}\n{{Genres}}\n\nPosition: ``[ {{PlaybackPosition}} / {{RunTime}} ]``",
+
+          {{#if_equals NotificationType 'PlaybackStart'}}
+            "color": "3394611",
+          {{/if_equals}}
+
+          {{#if_equals NotificationType 'PlaybackStop'}}
+            {{#if_equals PlayedToCompletion true}}
+                "color": "32767",
+            {{else}}
+                "color": "15737923",
+            {{/if_equals}}
+          {{/if_equals}}
+
+            "footer": {
+                "text": "{{{ServerName}}}",
+                "icon_url": "{{AvatarUrl}}"
+            },
+            
+            "timestamp": "{{Timestamp}}"
+        }
+    ]
+}
