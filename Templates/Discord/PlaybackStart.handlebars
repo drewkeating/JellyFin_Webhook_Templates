@@ -37,7 +37,7 @@
                 "url": "{{ServerUrl}}/Items/{{ItemId}}/Images/Primary"
             },
 
-            "description": "> {{{Overview}}}\n{{Genres}}\n\nPosition: ``[ {{PlaybackPosition}} / {{RunTime}} ]``",
+            "description": "> {{{json_encode Overview}}}\n{{Genres}}\n\nPosition: ``[ {{PlaybackPosition}} / {{RunTime}} ]``",
 
           {{#if_equals NotificationType 'PlaybackStart'}}
             "color": "3394611",
